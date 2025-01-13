@@ -1,0 +1,84 @@
+﻿@model Area_v1.ViewModel.LookUpView
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateSubmit" asp-controller="Products" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">ProductName</label>
+                <input  class="form-control" name="ProductName" />
+              
+            </div>
+            <div class="form-group">
+                <label class="control-label">ProductDescription</label>
+                <input  class="form-control" name="ProductDescription" />
+         
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">ProductPrice</label>
+                <input  class="form-control" name="ProductPrice" />
+         
+            </div>
+            
+
+            <div class="form-group">
+                <label class="control-label">Product Catagory</label>
+                <input  class="form-control" name="Catagory" id="Catagory" />
+
+            </div>
+           
+            
+            <div class="form-group">
+                <label class="control-label">ProductImage</label>
+                <input type="file" class="form-control" name="UploadImage" id="UploadImage" accept="image/*"/>
+              
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">PreView</label>
+                <img id="imagepreview" src="#" alt="imagepreview" style="max-width:200px; max-height:100px; display:none;" />      
+            </div>
+            <br />
+            <div class="form-group form-check">
+                <label class="control-label" for="LookUpLebelId">Lebels </label>
+                <select class="form-control" id="LookUpLebelId">
+                    <option value="">---Select Lebel---</option>
+                    @foreach (var lebels in ViewBag.LabelList)
+                    {
+                        <option value="@lebels.Value">@lebels.Text</option>
+
+
+                    }
+
+                </select>
+            </div>
+
+            <div class="form-group form-check">
+                <label class="form-check-label"> </label>
+                    <input class="form-check-input" asp-for="IsActive" /> 
+               
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" id="submit" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+<script>
+
+
+</script>
+
+  
