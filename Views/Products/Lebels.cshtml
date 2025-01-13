@@ -4,86 +4,111 @@
     ViewData["Title"] = "LebelsCreate";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-   Add
-</button>
-<div class="card-body">
-    <table id="example1" class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Label Name</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (Model != null)
-            {
-                foreach (var label in Model)
-                {
-                    <tr>
-                        <td>@label.LookUpLebelId</td>
-                        <td>@label.LookUpLebelName</td>
-                        @*<td>
-                            <a asp-area="Admin" asp-controller="Label" asp-action="Edit" asp-route-id="@label.LableId" class="btn btn-info btn-sm">
-                                <i class="fas fa-edit"></i> Edit
-                            </a>
-                            <a asp-area="Admin" asp-controller="Label" asp-action="Delete" asp-route-id="@label.LableId" class="btn btn-danger btn-sm">
-                                <i class="fas fa-trash"></i> Delete
-                            </a> 
-                        </td>*@
-                    </tr>
-                }
-            }
-        </tbody>
-    </table>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Label List</h3>
+                <div class="card-tools">
+
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#createLabelModal">
+                        <i class="fas fa-plus"></i> Add New Label
+                    </button>
+
+
+
+                </div>
+            </div>
+            <!-- /.card-header -->
+
+            <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Label Name</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var label in Model)
+                            {
+                                <tr>
+                                    <td>@label.LookUpLebelId</td>
+                                    <td>@label.LookUpLebelName</td>
+                                    @*  <td>
+                                        <a asp-area="Admin" asp-controller="Label" asp-action="Edit" asp-route-id="@label.LableId" class="btn btn-info btn-sm">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </a>
+                                        <a asp-area="Admin" asp-controller="Label" asp-action="Delete" asp-route-id="@label.LableId" class="btn btn-danger btn-sm">
+                                            <i class="fas fa-trash"></i> Delete
+                                        </a>
+                                    </td> *@
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
 </div>
 
 
-
-
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<div class="modal fade" id="createLabelModal" tabindex="-1" aria-labelledby="createLabelModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="createLabelModalLabel">Create Label</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-
-                <form asp-action="LebelsCreate" id="LebelsCreate" asp-controller="Products" method="post">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <form id="createLabelForm" asp-action="LebelsCreate" asp-controller="Products">
+                @Html.AntiForgeryToken()
+                <div class="modal-body">
                     <div class="form-group">
-                        <label for="LookUpLebelName" class="control-label"></label>
-                        <input for="LookUpLebelName" class="form-control" />
-                        <span for="LookUpLebelName" class="text-danger"></span>
+                        <label for="LookUpLebelName">Label Name</label>
+                        <input type="text" id="LookUpLebelName" class="form-control" name="LookUpLebelName" placeholder="Enter label name" />
                     </div>
-                    <div class="form-group">
-                        <input type="submit" value="Create" class="btn btn-primary" />
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Create</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 
-
-@* <form asp-action="LebelsCreate" id="LebelsCreate" asp-controller="Products" method="post">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="form-group">
-        <label for="LookUpLebelName" class="control-label"></label>
-        <input for="LookUpLebelName" class="form-control" />
-        <span for="LookUpLebelName" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <input type="submit" value="Create" class="btn btn-primary" />
-    </div>
-</form> *@
+<script>
+    $(document).ready(function () {
+        $('#createLabelForm').on('submit', function (e) {
+            e.preventDefault();
+            alert("ok");
+            var formData = new FormData(this);
+            $.ajax({
+                url: '@Url.Action("LebelsCreate", "Products")',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    if (response.success) {
+                        $('#createLabelModal').modal('hide');
+                    }
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        });
+    });
+</script>

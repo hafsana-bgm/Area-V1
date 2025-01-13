@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Area_v1.Areas.Admin.DataModel;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -12,6 +13,8 @@ namespace Area_v1.Areas.Admin.Data
         public required DbSet<Area_v1.Areas.Admin.DataModel.ShopLebel> ShopLebels { get; set; }
         public required DbSet<Area_v1.Models.LookUp> Lookups { get; set; }
         public required DbSet<Area_v1.Models.LookUpLebel> LookUpLebels { get; set; }
+        public required DbSet<Product> Product { get; set; }
+        public required DbSet<Labels> Labels { get; set; }
        
     }
 }
