@@ -55,7 +55,7 @@ namespace Area_v1.Areas.Shop.Controllers
         {
             var LebelList = _context.ShopLebels.ToList();
 
-            return View();
+            return View(LebelList);
         }
 
         public IActionResult LabelCreate(ShopLebel model)

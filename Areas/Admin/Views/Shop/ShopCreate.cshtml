@@ -1,8 +1,9 @@
 ﻿@model Area_v1.Areas.Admin.DataModel.ShopsL
 
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    
     ViewData["Title"] = "ShopCreate";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <h1>ShopCreate</h1>
@@ -64,6 +65,4 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+
