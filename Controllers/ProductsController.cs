@@ -89,27 +89,7 @@ namespace Area_v1.Controllers
             return View(LebelList);
         }
 
-        //public IActionResult ProductList() //with Join Query
-        //{
-        //    var datalist = from Product in Product
-        //                   join Label in Labels
-        //                   on Product.LableId equals Label.LableId
-        //                   select new ProductVM
-        //                   {
-        //                       ProductId = Product.ProductId,
-        //                       Name = Product.Name,
-        //                       Description = Product.Description,
-        //                       Image = Product.Image,
-        //                       Price = Product.Price,
-        //                       LableId = Product.LableId,
-        //                       LableName = Labels
-
-        //                                      IsActive = Product.IsActive,
-        //                       Category = Product.Category,
-        //                   };
-
-        //    return View();
-        //}
+       
         public IActionResult LebelsCreate(LookUpLebel Datamodel)
         {
             _context.LookUpLebels.Add(Datamodel);
@@ -127,6 +107,12 @@ namespace Area_v1.Controllers
             }
 
 
+        }
+        public IActionResult Productlist()
+        {
+            var Product = _context.Lookups.ToList();
+
+            return View(Product);
         }
 
     }

@@ -1,0 +1,74 @@
+﻿@{
+    ViewData["Title"] = "LebelsCreate";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@model IEnumerable<Area_v1.Models.LookUp>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Label List</h3>
+                <div class="card-tools">
+
+                  
+
+
+                </div>
+            </div>
+            <!-- /.card-header -->
+
+            <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>ProductId</th>
+                            <th>ProductName</th>
+                            <th>ProductDescription</th>
+                            <th>ProductPrice</th>
+                            <th>ProductImage</th>
+                            <th>LebelId</th>
+                            <th>ProductCount</th>
+                            <th>ProductCatagory</th>
+                            <th>IsActive</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var label in Model)
+                            {
+                                <tr>
+                                    <td>@label.ProductId</td>
+                                    <td>@label.ProductName</td>
+                                    <td>@label.ProductDescription</td>
+                                    <td>@label.ProductPrice</td>
+                                    <td>
+                                        <img src="~/upload/@label.ProductImage" />
+                                    </td>
+                                    <td>@label.LebelId</td>
+                                    <td>@label.ProductCount</td>
+                                    <td>@label.ProductCatagory</td>
+                                    <td>@label.IsActive</td>
+
+
+                                    @*  <td>
+                                        <a asp-area="Admin" asp-controller="Label" asp-action="Edit" asp-route-id="@label.LableId" class="btn btn-info btn-sm">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </a>
+                                        <a asp-area="Admin" asp-controller="Label" asp-action="Delete" asp-route-id="@label.LableId" class="btn btn-danger btn-sm">
+                                            <i class="fas fa-trash"></i> Delete
+                                        </a>
+                                    </td> *@
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
