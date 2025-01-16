@@ -1,6 +1,5 @@
 ﻿using System.IO;
-using Area_v1.Areas.Admin.Data;
-using Area_v1.Areas.Admin.DataModel;
+using Area_v1.Data;
 using Area_v1.Migrations;
 using Area_v1.Models;
 using Area_v1.ViewModel;

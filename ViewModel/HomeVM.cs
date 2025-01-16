@@ -1,5 +1,4 @@
 ﻿using System.Reflection.Emit;
-using Area_v1.Areas.Admin.DataModel;
 using Area_v1.Models;
 
 namespace Area_v1.ViewModel

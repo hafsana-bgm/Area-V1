@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Area_v1.Areas.ViewModel
+namespace Area_v1.Models
 {
-    public class ShopVM
+    public class ShopsL
     {
         [Key]
         public int ProductId { get; set; }
@@ -14,6 +14,13 @@ namespace Area_v1.Areas.ViewModel
         public int ProductCount { get; set; }
         public string? ProductCatagory { get; set; }
         public bool IsActive { get; set; }
-        public IFormFile? UploadImage { get; set; }
+    }
+
+    public class ShopLebel
+    {
+        [Key]
+
+        public int ShopLebelId { get; set; }
+        public string? LebelName { get; set; }
     }
 }

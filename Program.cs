@@ -1,4 +1,4 @@
-using Area_v1.Areas.Admin.Data;
+using Area_v1.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
