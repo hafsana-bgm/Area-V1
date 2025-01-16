@@ -10,7 +10,7 @@ namespace Area_v1.Models
         public string? ProductDescription { get; set; }
         public string? ProductPrice { get; set; }
         public string? ProductImage { get; set; }
-        public int LebelId { get; set; }
+        public int LookUpLebelId { get; set; }
         public int ProductCount { get; set; }
         public string? ProductCatagory { get; set; }
         public bool IsActive { get; set; }

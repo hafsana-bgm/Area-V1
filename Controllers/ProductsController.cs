@@ -81,6 +81,40 @@ namespace Area_v1.Controllers
         }
         //file Upload end
 
+
+
+        public IActionResult Productlist()
+        {
+            var Product = _context.Lookups.ToList();
+
+            return View(Product);
+        }
+
+
+
+
+
+        public IActionResult ProductDelete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = _context.Lookups.FirstOrDefault(johan => johan.ProductId == id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            _context.Remove(product);
+            _context.SaveChanges();
+
+            return RedirectToAction("Productlist");
+
+            }
+
         public IActionResult Lebels()
         {
             var LebelList = _context.LookUpLebels.ToList();
@@ -107,12 +141,6 @@ namespace Area_v1.Controllers
 
 
         }
-        public IActionResult Productlist()
-        {
-            var Product = _context.Lookups.ToList();
-
-            return View(Product);
-        }
-
+     
     }
 }
