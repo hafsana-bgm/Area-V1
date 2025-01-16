@@ -141,6 +141,27 @@ namespace Area_v1.Controllers
 
 
         }
-     
+
+        public IActionResult LebelDelete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = _context.LookUpLebels.FirstOrDefault(johan => johan.LookUpLebelId == id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            _context.Remove(product);
+            _context.SaveChanges();
+
+            return RedirectToAction("Lebels");
+
+        }
+
     }
 }

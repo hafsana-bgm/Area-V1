@@ -1,8 +1,11 @@
 using System.Diagnostics;
 using Area_v1.Data;
+using Area_v1.Helper;
 using Area_v1.Models;
 using Area_v1.ViewModel;
+using DocumentFormat.OpenXml.Wordprocessing;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 
 namespace Area_v1.Controllers
@@ -29,6 +32,7 @@ namespace Area_v1.Controllers
         }
 
 
+     
 
         public IActionResult Privacy()
         {
