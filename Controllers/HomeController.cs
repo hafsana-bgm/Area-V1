@@ -1,24 +1,40 @@
 using System.Diagnostics;
+using Area_v1.Areas.Admin.Data;
 using Area_v1.Models;
+using Area_v1.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Area_v1.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly BAreaContext _context;
+        public HomeController(ILogger<HomeController> logger, BAreaContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var allproducts = _context.Lookups.Take(10).ToList();
+
+            var viewmodel = new HomeVM();
+
+            viewmodel.LookUp = allproducts;
+
+            return View(viewmodel);
         }
 
+
+
         public IActionResult Privacy()
+        {
+            return View();
+        }
+        public IActionResult Admin()
         {
             return View();
         }

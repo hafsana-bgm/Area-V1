@@ -62,10 +62,12 @@
                 </select>
             </div>
 
-            <div class="form-group form-check">
-                <label class="form-check-label"> </label>
-                    <input class="form-check-input" asp-for="IsActive" /> 
-               
+            <div class="form-group">
+                <label asp-for="IsActive" class="control-label">Is Active</label>
+                <select id="IsActive" class="form-control" name="IsActive">
+                    <option value="true">Active</option>
+                    <option value="false">Inactive</option>
+                </select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" id="submit" />
