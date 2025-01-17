@@ -30,9 +30,52 @@ namespace Area_v1.Controllers
 
             return View(viewmodel);
         }
+        [HttpPost]
 
 
-     
+        public IActionResult AddToCart([FromBody] int ProductId)
+        {
+
+            var product = _context.Lookups.FirstOrDefault(a => a.ProductId == ProductId);
+            if (product == null)
+            {
+                return Json(new { Success = false, msg = "Product not found" });
+            }
+            var cart = HttpContext.Session.SetObjectAsJson<List<CartItem>>("Shop") ?? new List<CartItem>();
+            var CartItem = cart.FirstOrDefault(x => x.ProductId == ProductId);
+
+            if (cart == null)
+            {
+                cart.Add(new CartItem
+                {
+                    ProductId = product.ProductId,
+                    Name = product.ProductName,
+                    Price = product.ProductPrice,
+                    Quantity = 1
+                });
+            }
+            else
+            {
+                CartItem.Quantity++;
+            }
+
+            HttpContext.Session.SetObjectAsJson("Shop", cart);
+
+            return Json(new { Success = true, msg = "Product found" });
+
+        }
+
+        [HttpGet]
+        public IActionResult GetCartCount()
+        {
+
+            var cart = HttpContext.Session.SetObjectAsJson<List<CartItem>>("Shop") ?? new List<CartItem>();
+            int count = cart.Sum(x => x.Quantity);
+
+            return Json(cart.Sum(x => x.Quantity));
+        }
+
+
 
         public IActionResult Privacy()
         {

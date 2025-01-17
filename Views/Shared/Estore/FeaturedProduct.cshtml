@@ -48,35 +48,83 @@
 			}
 
 
-
-
-
 		</div>
-	</div>
+	</div> 
 </div>
 <!-- Featured Product End -->   >
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
 <script>
 
-	function addToCart(productId)
+	function addToCart(ProductId)
 	{
-	 $.ajax({
-		 url:'/Home/AddToCart',
-		 type:'Post',
-		 contenttype:'application/json; charset=utf-8',
-		 data: JSON.stringify(productId),
-		 success: function(response){
-			 if(response.success == false){
-				 alert(response.message);
-			 }
-		 }
+
+		$.ajax({
+
+				url:'/Home/AddToCart',
+
+				type:'Post',
+
+				contentype:'application/json; charset=utf-8',
+
+				data: JSON.stringify(ProductId),
+
+				success: function(response){
+					if (response.success == false){
+					alert(response.msg);
+
+					}
+						if (response.success == true){
+						UpdateCartCount();
+
+						}
+				},
 
 
-	 });
-
+		});
 
 	}
 
 </script>
+
+
+@* // 	function addToCart(productId) {
+
+// 		$.ajax({
+// 			url:'/Home/AddToCart',
+// 			type: 'POST',
+// 			contentType: 'application/json; charset=utf-8',
+// 			data: JSON.stringify(productId),
+// 			success: function(response){
+// 				if (response.success == false){
+// 					alert(response.msg);
+// 				}
+// 				if (response.success == true){
+// 					UpdateCartCount();
+// 				}
+
+
+
+// 			},
+
+
+// 		});
+
+// 	}
+
+// 
+ *@
+
+
+
+
+
+
+
+
+

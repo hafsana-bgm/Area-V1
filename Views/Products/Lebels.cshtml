@@ -43,7 +43,7 @@
                                         @*<a asp-area="Admin" asp-controller="Label" asp-action="Edit" asp-route-id="@label.LableId" class="btn btn-info btn-sm">
                                             <i class="fas fa-edit"></i> Edit
                                         </a>*@
-                                        <a asp-area="Admin" asp-controller="Label" asp-action="Delete" asp-route-id="@label.LableId" class="btn btn-danger btn-sm">
+                                        <a asp-controller="Products" asp-action="LebelDelete" asp-route-id="@label.LookUpLebelId" class="btn btn-danger btn-sm">
                                             <i class="fas fa-trash"></i> Delete
                                         </a>
                                     </td> 
@@ -103,6 +103,8 @@
                 success: function (response) {
                     if (response.success) {
                         $('#createLabelModal').modal('hide');
+
+
                     }
                 },
                 error: function (error) {

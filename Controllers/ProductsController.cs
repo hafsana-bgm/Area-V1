@@ -129,10 +129,11 @@ namespace Area_v1.Controllers
             try
             {
 
-
                 _context.SaveChanges();
 
-                return Json(true);
+                var result = _context.LookUpLebels.ToList();
+
+                return Json(new {success = true, newData = result});
             }
             catch (Exception)
             {
