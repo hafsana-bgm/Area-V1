@@ -1,4 +1,4 @@
-﻿@model Area_v1.ViewModel.ShopVM
+﻿@model Area_v1.Models.Product
 @{
     ViewData["Title"] = "Shop Create";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="ShopCreate" asp-controller="Shop"  enctype="multipart/form-data">
+        <form asp-action="ShopEdit" asp-controller="Shop" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
@@ -50,11 +50,7 @@
                 <label class="control-label" for="LableId">Lebels </label>
                 <select class="form-control" id="LableId">
                     <option value="">---Select Lebel---</option>
-                    @foreach (var labels in ViewBag.LabelLis)
-                    {
-                        <option value="@labels.Value">@labels.Text</option>
-                    }
-                   
+
                 </select>
             </div>
 

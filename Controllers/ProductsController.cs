@@ -150,7 +150,7 @@ namespace Area_v1.Controllers
                 return NotFound();
             }
 
-            var product = _context.LookUpLebels.FirstOrDefault(johan => johan.LookUpLebelId == id);
+            var product = _context.LookUpLebels.FirstOrDefault(x => x.LookUpLebelId == id);
 
             if (product == null)
             {

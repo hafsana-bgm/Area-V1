@@ -13,6 +13,7 @@ namespace Area_v1.ViewModel
         public int LableId { get; set; }
         public bool IsActive { get; set; }
         public string? Category { get; set; }
+        public IFormFile? UploadImage { get; set; }
 
     }
 }
