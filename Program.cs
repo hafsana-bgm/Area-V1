@@ -14,6 +14,8 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<BAreaContext>();
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddSession();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -32,7 +34,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
   
 app.UseRouting();
-
+app.UseSession();
 
 
 app.UseAuthorization();

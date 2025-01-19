@@ -54,41 +54,30 @@
 <!-- Featured Product End -->   >
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
 <script>
-
-	function addToCart(ProductId)
-	{
-
+	
+	
+		function addToCart(ProductId) {
+			 
 		$.ajax({
-
-				url:'/Home/AddToCart',
-
-				type:'Post',
-
-				contentype:'application/json; charset=utf-8',
-
-				data: JSON.stringify(ProductId),
-
-				success: function(response){
-					if (response.success == false){
+			url: '/Home/AddToCart',
+			type: 'POST',
+			contentType: 'application/json; charset=utf-8',
+			data: JSON.stringify({ ProductId: ProductId }), 
+			success: function(response) {
+				if (response.success === false) {
 					alert(response.msg);
-
-					}
-						if (response.success == true){
-						UpdateCartCount();
-
-						}
-				},
-
-
+				}
+				if (response.success === true) {
+					UpdateCartCount();
+				}
+			},
+			error: function(xhr, status, error) { 
+				console.error("Error occurred:", error); // Log any error for debugging
+			}
 		});
-
 	}
+
 
 </script>
 

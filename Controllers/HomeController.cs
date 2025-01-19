@@ -30,8 +30,9 @@ namespace Area_v1.Controllers
 
             return View(viewmodel);
         }
-        [HttpPost]
 
+
+        [HttpPost]
 
         public IActionResult AddToCart([FromBody] int ProductId)
         {
@@ -64,6 +65,10 @@ namespace Area_v1.Controllers
             return Json(new { Success = true, msg = "Product found" });
 
         }
+
+
+
+
 
         [HttpGet]
         public IActionResult GetCartCount()
