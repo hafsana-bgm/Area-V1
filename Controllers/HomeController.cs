@@ -22,63 +22,69 @@ namespace Area_v1.Controllers
 
         public IActionResult Index()
         {
+            
+
             var allproducts = _context.Lookups.Take(10).ToList();
+
+       
 
             var viewmodel = new HomeVM();
 
-            viewmodel.LookUp = allproducts;
+            viewmodel.Products = _context.Product.ToList();
 
+            viewmodel.LookUp = allproducts;
+           
             return View(viewmodel);
         }
 
 
-        [HttpPost]
+        //[HttpPost]
 
-        public IActionResult AddToCart([FromBody] int ProductId)
-        {
+        //public IActionResult AddToCart([FromBody]int ProductId)
+        //{
 
-            var product = _context.Lookups.FirstOrDefault(a => a.ProductId == ProductId);
-            if (product == null)
-            {
-                return Json(new { Success = false, msg = "Product not found" });
-            }
-            var cart = HttpContext.Session.SetObjectAsJson<List<CartItem>>("Shop") ?? new List<CartItem>();
-            var CartItem = cart.FirstOrDefault(x => x.ProductId == ProductId);
+        //    var product = _context.Lookups.FirstOrDefault(a => a.ProductId == ProductId);
+        //    if (product == null)
+        //    {
+        //        return Json(new { Success = false, msg = "Product not found" });
+        //    }
+        //    var cart = HttpContext.Session.GetObjectFromJson<List<CartItem>>("Shop") ?? new List<CartItem>();
+        //    var CartItem = cart.FirstOrDefault(x => x.ProductId == ProductId);
 
-            if (cart == null)
-            {
-                cart.Add(new CartItem
-                {
-                    ProductId = product.ProductId,
-                    Name = product.ProductName,
-                    Price = product.ProductPrice,
-                    Quantity = 1
-                });
-            }
-            else
-            {
-                CartItem.Quantity++;
-            }
+        //    if (cart == null)
+        //    {
+        //        cart.Add(new CartItem
+        //        {
+        //            ProductId = product.ProductId,
+        //            Name = product.ProductName,
+        //            Price = product.ProductPrice,
+        //            Quantity = 1
+        //        });
+        //    }
+        //    else
+        //    {
+        //        CartItem.Quantity++;
+        //    }
 
-            HttpContext.Session.SetObjectAsJson("Shop", cart);
+        //    HttpContext.Session.SetObjectAsJson("Shop", cart);
 
-            return Json(new { Success = true, msg = "Product found" });
+        //    return Json(new { Success = true, msg = "Product found" });
 
-        }
-
-
+        //}
 
 
 
-        [HttpGet]
-        public IActionResult GetCartCount()
-        {
 
-            var cart = HttpContext.Session.SetObjectAsJson<List<CartItem>>("Shop") ?? new List<CartItem>();
-            int count = cart.Sum(x => x.Quantity);
 
-            return Json(cart.Sum(x => x.Quantity));
-        }
+        //[HttpGet]
+        //public IActionResult GetCartCount()
+        //{
+
+        //    var cart = HttpContext.Session.GetObjectFromJson<List<CartItem>>("Shop") ?? new List<CartItem>();
+        //    int count = cart.Sum(x => x.Quantity);
+
+        //    return Json(cart.Sum(x => x.Quantity));
+        //}
 
 
 
@@ -96,5 +102,82 @@ namespace Area_v1.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
+        [HttpPost]
+        public IActionResult AddToWant([FromBody]int productId)
+        {
+
+            var product = _context.Product.FirstOrDefault(x => x.ProductId == productId);
+            if (product == null)
+            {
+                return Json(new { success = false, Msg = "Error" });
+            }
+
+            var cart = HttpContext.Session.GetObjectFromJson<List<CartItemVM>>("Cart") ?? new List<CartItemVM>();
+
+            var CartItem = cart.FirstOrDefault(a => a.ProductId==productId);
+
+            if (CartItem == null)
+            {
+                cart.Add(new CartItemVM
+                {
+                    ProductId = product.ProductId,
+                    ProductName = product.Name,
+                    ProductPrice = product.Price,
+                    Quantity = 1
+
+                });
+
+            }
+            else
+            {
+                CartItem.Quantity++;
+
+            }
+
+
+            HttpContext.Session.SetObjectAsJson("Cart", cart);
+
+            return Json(new { success = true, Msg = "Success" });
+        }
+
+        [HttpGet]
+        public IActionResult GetCartCount()
+        {
+           var cart = HttpContext.Session.GetObjectFromJson<List<CartItemVM>>("Cart") ?? new List<CartItemVM>();
+
+            int count = cart.Sum(x => x.Quantity);
+
+            return Json(count);
+        }
+        public IActionResult ProductCart()
+        {
+            var product = _context.Product.ToList();
+
+            return View(product);
+        }
+        public IActionResult CartDelete(int? id)
+        {
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = _context.Product.FirstOrDefault(x => x.ProductId == id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            _context.Remove(product);
+            _context.SaveChanges();
+
+            return RedirectToAction("ProductCart");
+
+        }
+
     }
 }

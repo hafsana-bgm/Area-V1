@@ -58,6 +58,8 @@ namespace Area_v1.Controllers
             _context.Product.Add(RealDataModel);
             _context.SaveChanges();
 
+
+
             ViewBag.LabelList = _context.Labels.Select(x => new SelectListItem
             {
                 Value = x.LableId.ToString(),
@@ -120,6 +122,12 @@ namespace Area_v1.Controllers
 
             _context.SaveChanges();
 
+            ViewBag.LabelList = _context.Labels.Select(x => new SelectListItem
+            {
+                Value = x.LableId.ToString(),
+                Text = x.LabelName
+            }).ToList();
+
             return RedirectToAction("ShopList");
         }
 
@@ -161,11 +169,35 @@ namespace Area_v1.Controllers
                 return Json(new { success = true, newData = result });
             }
             catch (Exception)
+
             {
                 return Json(false);
             }
 
 
         }
+
+        public IActionResult LabelDelete(int? id)
+        {
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = _context.Labels.FirstOrDefault(x => x.LableId == id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            _context.Remove(product);
+            _context.SaveChanges();
+
+            return RedirectToAction("LebelList");
+
+        }
+
     }
 }

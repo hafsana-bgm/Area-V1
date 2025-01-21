@@ -91,9 +91,6 @@ namespace Area_v1.Controllers
         }
 
 
-
-
-
         public IActionResult ProductDelete(int? id)
         {
             if (id == null)
@@ -163,6 +160,9 @@ namespace Area_v1.Controllers
             return RedirectToAction("Lebels");
 
         }
+
+      
+
 
     }
 }

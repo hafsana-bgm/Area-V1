@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Area_v1.Models.Labels>
 
 @{
-    ViewData["Title"] = "Lebel List";
+    ViewData["Title"] = "LebelsCreate";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -32,22 +32,24 @@
                         </tr>
                     </thead>
                     <tbody>
+
+                       
                         @if (Model != null)
                         {
                             foreach (var label in Model)
                             {
-                                        <tr>
-                                            <td>@label.LableId</td>
-                                            <td>@label.LabelName</td>
-                                              <td>
+                                <tr>
+                                    <td>@label.LableId</td>
+                                    <td>@label.LabelName</td>
+                                    <td>
                                         @*<a asp-area="Admin" asp-controller="Label" asp-action="Edit" asp-route-id="@label.LableId" class="btn btn-info btn-sm">
                                             <i class="fas fa-edit"></i> Edit
                                         </a>*@
-                                                <a asp-controller="Products" asp-action="LebelDelete" asp-route-id="@label.LableId" class="btn btn-danger btn-sm">
-                                                    <i class="fas fa-trash"></i> Delete
-                                                </a>
-                                            </td> 
-                                        </tr>
+                                        <a asp-controller="Shop" asp-action="LabelDelete" asp-route-id="@label.LableId" class="btn btn-danger btn-sm">
+                                            <i class="fas fa-trash"></i> Delete
+                                        </a>
+                                    </td>
+                                </tr>
                             }
                         }
                     </tbody>
@@ -74,8 +76,8 @@
                 @Html.AntiForgeryToken()
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="LookUpLebelName">Label Name</label>
-                        <input type="text" id="LookUpLebelName" class="form-control" name="LookUpLebelName" placeholder="Enter label name" />
+                        <label for="LabelName">Label Name</label>
+                        <input type="text" id="LabelName" class="form-control" name="LabelName" placeholder="Enter label name" />
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -86,6 +88,7 @@
         </div>
     </div>
 </div>
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 
 <script>
@@ -95,7 +98,7 @@
             alert("ok");
             var formData = new FormData(this);
             $.ajax({
-                url: '@Url.Action("LebelsCreate", "Products")',
+                url: '@Url.Action("LebelsCreate", "Shop")',
                 type: 'POST',
                 data: formData,
                 processData: false,
@@ -103,9 +106,7 @@
                 success: function (response) {
                     if (response.success) {
                         $('#createLabelModal').modal('hide');
-
-
-                    }
+                     }
                 },
                 error: function (error) {
                     console.error(error);

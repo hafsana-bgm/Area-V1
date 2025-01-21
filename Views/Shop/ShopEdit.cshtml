@@ -15,42 +15,45 @@
 
             <div class="form-group">
                 <label class="control-label">Product Name</label>
-                <input class="form-control" name="Name" id="Name" />
+                <input class="form-control" name="Name" id="Name" asp-for="Name" />
 
             </div>
 
             <div class="form-group">
                 <label class="control-label">ProductDescription</label>
-                <input class="form-control" name="Description" id="Description" />
+                <input class="form-control" name="Description" id="Description" asp-for="Description" />
 
             </div>
 
             <div class="form-group">
                 <label class="control-label">ProductPrice</label>
-                <input class="form-control" name="Price" id="Price" />
+                <input class="form-control" name="Price" id="Price" asp-for="Price" />
 
             </div>
 
 
             <div class="form-group">
                 <label class="control-label">Product Catagory</label>
-                <input class="form-control" name="Category" id="Catagory" />
+                <input class="form-control" name="Category" id="Catagory" asp-for="Category" />
 
             </div>
 
 
             <div class="form-group">
                 <label class="control-label">Product Image</label>
-                <input type="file" class="form-control" name="UploadImage" id="UploadImage" accept="image/*" />
+                <input type="file" class="form-control" name="Image" id="Image" accept="image/*" asp-for="Image" />
 
             </div>
 
             <br />
             <div class="form-group form-check">
                 <label class="control-label" for="LableId">Lebels </label>
-                <select class="form-control" id="LableId">
+                <select class="form-control" id="LableId" asp-for="LableId">
                     <option value="">---Select Lebel---</option>
-
+                    @foreach (var labels in ViewBag.LabelList)
+                    {
+                        <option value="@labels.Value">@labels.Text</option>
+                    }
                 </select>
             </div>
 

@@ -1,13 +1,21 @@
-﻿<div class="recent-product product">
+﻿@using Area_v1.Models;
+
+@model IEnumerable<Product>
+
+<div class="recent-product product">
     <div class="container-fluid">
         <div class="section-header">
             <h1>Recent Product</h1>
         </div>
         <div class="row align-items-center product-slider product-slider-4">
-            <div class="col-lg-3">
+
+            @{
+                foreach(var item in Model)
+                {
+                    <div class="col-lg-3">
                 <div class="product-item">
                     <div class="product-title">
-                        <a href="#">Product Name</a>
+                        <a href="#">@item.Name</a>
                         <div class="ratting">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -18,132 +26,63 @@
                     </div>
                     <div class="product-image">
                         <a href="product-detail.html">
-                            <img src="~/estore/img/product-6.jpg" alt="Product Image">
+                            <img src="~/UploadImage/@item.Image" alt="Product Image">
                         </a>
                         <div class="product-action">
-                            <a href="#"><i class="fa fa-cart-plus"></i></a>
+
+                            <a href="javascript:void(0);" onclick="addToCart(@item.ProductId)"><i class="fa fa-cart-plus"></i></a>
+
                             <a href="#"><i class="fa fa-heart"></i></a>
                             <a href="#"><i class="fa fa-search"></i></a>
                         </div>
                     </div>
                     <div class="product-price">
-                        <h3><span>$</span>99</h3>
+                        <h3><span>$</span>@item.Price</h3>
                         <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="product-item">
-                    <div class="product-title">
-                        <a href="#">Product Name</a>
-                        <div class="ratting">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="product-image">
-                        <a href="product-detail.html">
-                            <img src="~/estore/img/product-7.jpg" alt="Product Image">
-                        </a>
-                        <div class="product-action">
-                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                            <a href="#"><i class="fa fa-heart"></i></a>
-                            <a href="#"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-price">
-                        <h3><span>$</span>99</h3>
-                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="product-item">
-                    <div class="product-title">
-                        <a href="#">Product Name</a>
-                        <div class="ratting">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="product-image">
-                        <a href="product-detail.html">
-                            <img src="~/estore/img/product-8.jpg" alt="Product Image">
-                        </a>
-                        <div class="product-action">
-                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                            <a href="#"><i class="fa fa-heart"></i></a>
-                            <a href="#"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-price">
-                        <h3><span>$</span>99</h3>
-                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="product-item">
-                    <div class="product-title">
-                        <a href="#">Product Name</a>
-                        <div class="ratting">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="product-image">
-                        <a href="product-detail.html">
-                            <img src="~/estore/img/product-9.jpg" alt="Product Image">
-                        </a>
-                        <div class="product-action">
-                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                            <a href="#"><i class="fa fa-heart"></i></a>
-                            <a href="#"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-price">
-                        <h3><span>$</span>99</h3>
-                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="product-item">
-                    <div class="product-title">
-                        <a href="#">Product Name</a>
-                        <div class="ratting">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="product-image">
-                        <a href="product-detail.html">
-                            <img src="~/estore/img/product-10.jpg" alt="Product Image">
-                        </a>
-                        <div class="product-action">
-                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                            <a href="#"><i class="fa fa-heart"></i></a>
-                            <a href="#"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-price">
-                        <h3><span>$</span>99</h3>
-                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                    </div>
-                </div>
-            </div>
+            </div>  
+                }
+            }
+
+          
+          
         </div>
     </div>
 </div>
+
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ <script>
+
+    function addToCart(productId)
+    {
+        
+        $.ajax({
+           
+            url:'/Home/AddToWant',
+
+            type: 'POST',
+
+            contentType:'application/json; charset=utf-8',
+
+             data:JSON.stringify(productId),
+
+            success: function(response){
+
+                if(response.success == false) 
+                {
+                        alert(response.Msg);
+                }
+
+                if(response.success == true)
+                {
+                        UpdateCartCount();
+                }
+
+            },
+
+        });
+
+    }
+
+ </script>

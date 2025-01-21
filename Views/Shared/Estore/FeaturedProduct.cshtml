@@ -65,10 +65,10 @@
 			contentType: 'application/json; charset=utf-8',
 			data: JSON.stringify({ ProductId: ProductId }), 
 			success: function(response) {
-				if (response.success === false) {
+				if (response.success == false) {
 					alert(response.msg);
 				}
-				if (response.success === true) {
+				if (response.success == true) {
 					UpdateCartCount();
 				}
 			},

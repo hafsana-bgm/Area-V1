@@ -50,7 +50,8 @@
                 <label class="control-label" for="LableId">Lebels </label>
                 <select class="form-control" id="LableId">
                     <option value="">---Select Lebel---</option>
-                    @foreach (var labels in ViewBag.LabelLis)
+
+                    @foreach (var labels in ViewBag.LabelList)
                     {
                         <option value="@labels.Value">@labels.Text</option>
                     }
