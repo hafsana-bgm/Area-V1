@@ -24,7 +24,6 @@
                             </thead>
                             <tbody class="align-middle">
                                 @{
-                                    int total = 1;
                                     foreach(var data in Model)
                                     {
                                         <tr>
@@ -39,10 +38,10 @@
                                                 <div class="qty">
                                                     <button class="btn-minus"><i class="fa fa-minus"></i></button>
                                                     <input type="text" value="1">
-                                                    <button class="btn-plus"><i class="fa fa-plus"></i></button>
+                                                    <button class="btn-plus" onclick="updateCount()"><i class="fa fa-plus"></i></button>
                                                 </div>
                                             </td>
-                                            <td>@total</td>
+                                            <td>$99</td>
                                             <td><a asp-route-id="@data.ProductId" asp-action="CartDelete" asp-controller="Home"><i class="fa fa-trash"></i></a></td>
                                         </tr>
                                     }
@@ -54,6 +53,18 @@
                     </div>
                 </div>
             </div>
+            <script>
+                function updateCount()
+                {
+                    let price = document.getElementById('Price').ProductId.text;
+                    let price = document.getElementById('Price').ProductId.text;
+                    document.getElementById('Total').value = price +''+ price;
+                    
+
+
+                }
+
+            </script>
             <div class="col-lg-4">
                 <div class="cart-page-inner">
                     <div class="row">
@@ -69,8 +80,7 @@
                                     <h1>Cart Summary</h1>
                                     <p>Sub Total<span>$99</span></p>
                                     <p>Shipping Cost<span>$1</span></p>
-                                    <h2>Grand Total<span>$100</span></h2>
-                                </div>
+                                    <h2>Grand Total<span>$100</span></h2> 
                                 <div class="cart-btn">
                                     <button>Update Cart</button>
                                     <button>Checkout</button>

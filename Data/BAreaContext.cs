@@ -15,6 +15,9 @@ namespace Area_v1.Data
         public required DbSet<Models.LookUpLebel> LookUpLebels { get; set; }
         public required DbSet<Product> Product { get; set; }
         public required DbSet<Labels> Labels { get; set; }
+        public required DbSet<Login> Logins { get; set; }
+        public required DbSet<Register> Registers { get; set; }
+
 
     }
 }
